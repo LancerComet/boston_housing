@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import numpy as np
+# 引入一堆库.
 import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.model_selection import ShuffleSplit, train_test_split
@@ -8,14 +8,13 @@ from sklearn.metrics import make_scorer
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.model_selection import GridSearchCV
 
-# 数据定义.
+# 读取帝都历史房价.
 data = pd.read_csv('bj_housing.csv')
 features = data.drop('Value', axis = 1)  # 房屋特征.
 prices = data['Value']  # 价格.
 
 # 分割数据.
 # 测试数据占 25%.
-# 提问: 为什么将特征命名为 X, 将目标变量命名为 y?
 X_train, X_test = train_test_split(features, test_size = 0.25)
 y_train, y_test = train_test_split(prices, test_size = 0.25)
 
@@ -33,6 +32,5 @@ def fitModel (X, y):
 myModel = fitModel(X_train, y_train)
 
 # 预测一下.
-# 128 平方的 3 室 1 厅且周围有 1 个学校的 2004 年的 21 层破房.
-print myModel.predict([100, 3, 1, 1, 2014, 21])  # 机器告诉我这破房 340 W，啧啧.
-print myModel.predict([128, 3, 1, 1, 2017, 21])  # 机器告诉我这破房 340 W，啧啧.
+# 100 平方的 3 室 1 厅的 2017 年的 21 层学区破房.
+print myModel.predict([100, 3, 1, 1, 2017, 21])

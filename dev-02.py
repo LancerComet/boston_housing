@@ -6,4 +6,7 @@ data = pd.read_csv('housing.csv')
 prices = data['MEDV']
 features = data.drop('MEDV', axis = 1)
 
-print np.mean(data[data['RM'] > 8][data['RM'] < 9])
+search = data[data['RM'] > 8][data['RM'] < 9]
+print np.mean(search)
+print np.std(search)
+# print data
